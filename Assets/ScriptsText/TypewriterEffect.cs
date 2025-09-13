@@ -2,36 +2,59 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 
-
 public class TypewriterEffect : MonoBehaviour
 {
-    public float typingspeed = 0.05f;
-
+    [SerializeField] private float typingSpeed = 0.05f;
 
     private string fullText;
-    private TMP_Text textUI;
-    private Coroutine typingCouroutine;
+    private Coroutine typingCoroutine;
+    private bool isTyping;
 
-    public void StartTyping(string textToType, TMP_Text a)
+    public TMP_Text textUI;
+
+    // Start typing new text
+    public void StartTyping(string textToType)
     {
-        textUI = a;
-        fullText = textToType;
-
-        if (typingCouroutine != null)
+        // stop previous coroutine if still running
+        if (typingCoroutine != null)
         {
-            StopCoroutine(typingCouroutine);
+            StopCoroutine(typingCoroutine);
         }
 
-        typingCouroutine = StartCoroutine(TypeText());
+        fullText = textToType;
+        typingCoroutine = StartCoroutine(TypeText());
     }
 
-    public IEnumerator TypeText()
+    private IEnumerator TypeText()
     {
+        isTyping = true;
         textUI.text = "";
+
         foreach (char letter in fullText.ToCharArray())
         {
             textUI.text += letter;
-            yield return new WaitForSeconds(typingspeed);
+            yield return new WaitForSeconds(typingSpeed);
         }
+
+        isTyping = false;
+        typingCoroutine = null;
+    }
+
+    // Instantly complete current text
+    public void CompleteText()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        textUI.text = fullText;
+        isTyping = false;
+    }
+
+    public bool IsTyping()
+    {
+        return isTyping;
     }
 }
