@@ -5,15 +5,16 @@ using TMPro;
 
 public class TypewriterEffect : MonoBehaviour
 {
-    public TextMeshProUGUI textUI;
     public float typingspeed = 0.05f;
 
 
     private string fullText;
+    private TMP_Text textUI;
     private Coroutine typingCouroutine;
 
-    public void StartTyping(string textToType)
+    public void StartTyping(string textToType, TMP_Text a)
     {
+        textUI = a;
         fullText = textToType;
 
         if (typingCouroutine != null)

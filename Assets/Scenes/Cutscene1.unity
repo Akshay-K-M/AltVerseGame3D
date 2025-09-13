@@ -158,7 +158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hi there I am your friendly neighbourhood Spider Man
+  m_text: Hello
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b3d4298167df54189a2e530f78893d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Text1
+  myText: {fileID: 168668125}
   myEffect: {fileID: 1340355080}
 --- !u!1 &191209550
 GameObject:
@@ -514,7 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20401a4a756663443b382be4cd484bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
-  textUI: {fileID: 168668125}
   typingspeed: 0.05
 --- !u!4 &1340355081
 Transform:
