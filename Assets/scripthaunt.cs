@@ -13,11 +13,11 @@ public class scripthaunt : MonoBehaviour
     private Material[] originalMats;
     public List<GameObject> npcs;
     public EnemySpawn enemySpawn;
-    public float scareDistance = 300f;
+    public float scareDistance = 20f;
     float stopTime = 5f;
     float lastTime;
     public int interactionRadius = 2;
-    public int damage = 10;
+    public int damage = 35;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
