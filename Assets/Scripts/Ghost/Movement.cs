@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public GameObject Ghost;
     public float moveSpeed;
     public float mouseSensitivity;
-
+    public bool IsPossessing = false;
     private CharacterController controller;
+
+    private Vector3 OriginalScale;
+
 
     // rotation state
     float pitch = 0f; // up/down rotation
@@ -18,12 +22,16 @@ public class Movement : MonoBehaviour
         // Lock cursor in center of screen
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        OriginalScale = transform.localScale;
     }
 
     void Update()
     {
-        HandleMouseLook();
-        HandleMovement();
+        if (!IsPossessing)
+        {
+            HandleMouseLook();
+            HandleMovement();
+        }
     }
 
     void HandleMouseLook()
@@ -46,5 +54,19 @@ public class Movement : MonoBehaviour
         move.y = 0f; // ensure no vertical movement
 
         controller.Move(move * moveSpeed * Time.deltaTime);
+    }
+
+    public void DisappearIntoFurniture()
+    {
+        IsPossessing = true;
+        transform.localScale = Vector3.zero;
+        if (controller != null) controller.enabled = false;
+
+    }
+    public void ReappearFromFurniture()
+    {
+        IsPossessing = false;
+        transform.localScale = OriginalScale;
+        if (controller != null) controller.enabled = true;
     }
 }
