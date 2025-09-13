@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   player: {fileID: 1212682992}
-  positionOffset: {x: 0, y: 2, z: 3}
+  positionOffset: {x: 0, y: 2, z: -3}
   rotationOffset: {x: -6.33, y: 0, z: 0}
   smoothSpeed: 10
 --- !u!1 &410087039
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 1087815632}
   - component: {fileID: 1087815634}
   - component: {fileID: 1087815633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 1125489805}
   - component: {fileID: 1125489804}
   - component: {fileID: 1125489803}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 1212682992}
   - component: {fileID: 1212682994}
   - component: {fileID: 1212682993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
