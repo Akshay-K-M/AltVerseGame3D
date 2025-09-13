@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 41e6a74989c251c4ea41d998ce899198
+guid: f53631806105f6643a04a66cb11197af
 AudioImporter:
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 8
   defaultSettings:
     serializedVersion: 2
     loadType: 0
@@ -21,10 +21,3 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 184583
-  packageName: SynthWave Sci-Fi Music Pack
-  packageVersion: 2.0
-  assetPath: Assets/SynthwaveMusicVolumeI/Music_ElectronicWave.wav
-  uploadId: 763773
