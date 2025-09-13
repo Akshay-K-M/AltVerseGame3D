@@ -399,6 +399,9 @@ MonoBehaviour:
   typeSpeed: 0.05
   lines:
   - But that isn't you...
+  - You are long dead. A vengeful ghost.
+  - 
+  IsActive: 0
 --- !u!1 &1002917235
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,8 +857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40176eb3242ca4c4a8cfcc819930bc1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
+  Ghost: {fileID: 0}
   moveSpeed: 2
   mouseSensitivity: 2
+  IsPossessing: 0
 --- !u!1 &1724335648
 GameObject:
   m_ObjectHideFlags: 0
