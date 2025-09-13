@@ -12,7 +12,7 @@ public class MyMovement : MonoBehaviour
 
     private Vector3 OriginalScale;
 
-    private AudioSource possessionSound;
+    public AudioSource possessionSound;
 
 
     // rotation state
@@ -28,16 +28,16 @@ public class MyMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         OriginalScale = transform.localScale;
-        possessionSound = GetComponent<AudioSource>();
+        // possessionSound = GetComponent<AudioSource>();
         initial_pos = Ghost.transform.position;
 
     }
 
     void Update()
     {
+        HandleMouseLook();
         if (!IsPossessing)
         {
-            HandleMouseLook();
             HandleMovement();
 
             // --- Correct snapping to floating height ---

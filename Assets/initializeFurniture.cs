@@ -4,6 +4,7 @@ using UnityEngine;
 public class initializeFurniture : MonoBehaviour
 {
     public List<GameObject> furnitureList;
+    public Material material;
 
     void Awake()
     {
@@ -18,9 +19,10 @@ public class initializeFurniture : MonoBehaviour
         {
             if (furnitureObject.GetComponent<scripthaunt>() == null)    //incase the object already has scripthaunt
             {
-                furnitureObject.AddComponent<scripthaunt>();
+                scripthaunt shaunt = furnitureObject.AddComponent<scripthaunt>();
                 FurnitureMovement furnitureMovement = furnitureObject.AddComponent<FurnitureMovement>();
                 // furnitureMovement.
+                shaunt.material = material;
 
                 Debug.Log("Added Furniture script to: " + furnitureObject.name);
             }
