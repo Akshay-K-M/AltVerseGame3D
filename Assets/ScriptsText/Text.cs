@@ -17,13 +17,13 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
 
-    void Start()
+    public void StartDialogue()
     {
         if (lines.Length > 0)
             StartTyping(lines[currentLine]);
     }
 
-    void Update()
+    public void UpdateDialogue()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
