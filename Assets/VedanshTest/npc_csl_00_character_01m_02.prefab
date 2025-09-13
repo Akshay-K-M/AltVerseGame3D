@@ -2476,8 +2476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f8467fd26f76042bbeb188ddee5024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  agent: {fileID: 0}
-  animator: {fileID: 0}
+  agent: {fileID: -4580549705842810181}
+  animator: {fileID: 6735298415134057158}
   idleTime: 3
   walkRadius: 10
   walkSpeed: 2
@@ -2485,6 +2485,9 @@ MonoBehaviour:
   runInnerRadius: 15
   runOuterRadius: 25
   scaredDuration: 3
+  IdleString: 
+  WalkString: 
+  RunString: 
 --- !u!195 &-4580549705842810181
 NavMeshAgent:
   m_ObjectHideFlags: 0

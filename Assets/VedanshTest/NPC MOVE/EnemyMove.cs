@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class EnemyMove : MonoBehaviour
     public Animator animator;
 
     [Header("Idle/Walk Settings")]
-    public float idleTime = 3f;        // Seconds between picking new walk point
+    public float idleTime = 3f;        // Seconds before picking new walk point
     public float walkRadius = 10f;     // Radius for random walk points
     public float walkSpeed = 2f;
 
@@ -23,77 +22,87 @@ public class EnemyMove : MonoBehaviour
 
     string currentAnimation = "";
     bool isScared = false;
+    bool isRunning = false;
+    float scaredEndTime;
+    float nextActionTime;
+
+    [Header("Animation States")]
+    public string IdleString;
+    public string WalkString;
+    public string RunString;
+    public string ScaredString;
 
     void Start()
     {
         if (!agent) agent = GetComponent<NavMeshAgent>();
         if (!animator) animator = GetComponent<Animator>();
 
-        StartCoroutine(IdleRoutine());
+        playAnimation(IdleString);
+        nextActionTime = Time.time + idleTime;
     }
 
-    IEnumerator IdleRoutine()
+    void Update()
     {
-        while (true)
+        // Handle scared state
+        if (isScared)
         {
-            if (!isScared)
+            if (Time.time > scaredEndTime && !isRunning)
             {
-                playAnimation("idle");
+                Run();
+            }
+            else if (isRunning && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                isRunning = false;
+                isScared = false;
+                playAnimation(IdleString);
+                nextActionTime = Time.time + idleTime;
+            }
+            return;
+        }
 
-                yield return new WaitForSeconds(idleTime);
-
-                Vector3 dest;
-                if (RandomPoint(transform.position, walkRadius, out dest))
-                {
-                    agent.speed = walkSpeed;
-                    agent.SetDestination(dest);
-                    playAnimation("walk");
-                }
+        // If time to take an action and not moving → pick a walk destination
+        if (Time.time > nextActionTime && !agent.hasPath)
+        {
+            Vector3 dest;
+            if (RandomPoint(transform.position, walkRadius, out dest))
+            {
+                agent.speed = walkSpeed;
+                playAnimation(WalkString);
+                agent.SetDestination(dest);
             }
 
-            yield return null;
+            nextActionTime = Time.time + idleTime;
+        }
+
+        // If reached destination → go idle
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            playAnimation(IdleString);
         }
     }
 
     public void Run()
     {
-        StopAllCoroutines();
-        playAnimation("run");
-
+        isRunning = true;
         Vector3 dest;
         if (RandomPoint(transform.position, Random.Range(runInnerRadius, runOuterRadius), out dest))
         {
             agent.speed = runSpeed;
             agent.SetDestination(dest);
+            playAnimation(RunString);
         }
-
-        StartCoroutine(ResumeIdle());
     }
 
     public void Scared()
     {
-        if (!isScared)
-            StartCoroutine(ScaredRoutine());
-    }
-
-    IEnumerator ScaredRoutine()
-    {
         isScared = true;
-        playAnimation("scared");
-
-        yield return new WaitForSeconds(scaredDuration);
-
-        isScared = false;
-    }
-
-    IEnumerator ResumeIdle()
-    {
-        yield return new WaitForSeconds(idleTime);
-        StartCoroutine(IdleRoutine());
+        scaredEndTime = Time.time + scaredDuration;
+        playAnimation(ScaredString);
+        agent.ResetPath(); // stop moving while scared
     }
 
     // Play animation with your style
-    void playAnimation(string animation, float crossFadeTime = 0.2f)
+    void playAnimation(string animation, float crossFadeTime = 0.1f)
     {
         if (animation != "shoot")
         {
