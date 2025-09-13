@@ -5,6 +5,7 @@ public class initializeFurniture : MonoBehaviour
 {
     public List<GameObject> furnitureList;
     public Material material;
+    public EnemySpawn enemySpawn;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class initializeFurniture : MonoBehaviour
                 scripthaunt shaunt = furnitureObject.AddComponent<scripthaunt>();
                 FurnitureMovement furnitureMovement = furnitureObject.AddComponent<FurnitureMovement>();
                 // furnitureMovement.
+                shaunt.enemySpawn = enemySpawn;
                 shaunt.material = material;
 
                 Debug.Log("Added Furniture script to: " + furnitureObject.name);

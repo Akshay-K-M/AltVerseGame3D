@@ -8,6 +8,7 @@ public class EnemySpawn : MonoBehaviour
     public List<GameObject> npcPrefabs;      // List of NPC prefabs to pick from
     public float raycastDistance = 100f;     // How far down to check
     public List<Transform> spawnPoints = new List<Transform>();
+    public List<GameObject> npcs = new List<GameObject>();
 
     void Start()
     {
@@ -39,7 +40,8 @@ public class EnemySpawn : MonoBehaviour
                 if (npcPrefabs.Count > 0)
                 {
                     GameObject randomNPC = npcPrefabs[Random.Range(0, npcPrefabs.Count)];
-                    Instantiate(randomNPC, navHit.position, Quaternion.identity);
+                    GameObject temp = Instantiate(randomNPC, navHit.position, Quaternion.identity);
+                    npcs.Add(temp);
                     Debug.Log("Spawned NPC: " + randomNPC.name + " at " + navHit.position);
                 }
             }

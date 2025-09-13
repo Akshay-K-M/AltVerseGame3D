@@ -13,6 +13,7 @@ public class MyMovement : MonoBehaviour
     private Vector3 OriginalScale;
 
     public AudioSource possessionSound;
+    public GameObject ghostRender;
 
 
     // rotation state
@@ -91,14 +92,15 @@ public class MyMovement : MonoBehaviour
         }
 
         IsPossessing = true;
-        transform.localScale = Vector3.zero;
+        ghostRender.SetActive(false);
         if (controller != null) controller.enabled = false;
 
     }
     public void ReappearFromFurniture()
     {
+        ghostRender.SetActive(true);
         IsPossessing = false;
-        transform.localScale = OriginalScale;
+        // transform.localScale = OriginalScale;
         if (controller != null) controller.enabled = true;
     }
 }
