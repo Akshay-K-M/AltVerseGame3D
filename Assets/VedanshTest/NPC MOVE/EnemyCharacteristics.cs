@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyCharacteristics : MonoBehaviour
 {
     public int sanity;
+    public int temp;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,5 +16,5 @@ public class EnemyCharacteristics : MonoBehaviour
 
     }
     
-    
+
 }

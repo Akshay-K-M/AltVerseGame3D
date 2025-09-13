@@ -19,6 +19,9 @@ public class initializeFurniture : MonoBehaviour
             if (furnitureObject.GetComponent<scripthaunt>() == null)    //incase the object already has scripthaunt
             {
                 furnitureObject.AddComponent<scripthaunt>();
+                FurnitureMovement furnitureMovement = furnitureObject.AddComponent<FurnitureMovement>();
+                // furnitureMovement.
+
                 Debug.Log("Added Furniture script to: " + furnitureObject.name);
             }
             else

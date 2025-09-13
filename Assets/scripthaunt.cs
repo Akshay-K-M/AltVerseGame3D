@@ -6,6 +6,7 @@ public class scripthaunt : MonoBehaviour
     private Vector3 originalScale;
     private GameObject Ghost;
     private Movement ghostMovement;
+    public FurnitureMovement furnitureMovement;
 
     public int interactionRadius = 2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +24,7 @@ public class scripthaunt : MonoBehaviour
         {
             Debug.LogError("Ghost with movement.cs doesnt exist");
         }
-
+        furnitureMovement = transform.GetComponent<FurnitureMovement>();
     }
 
     // Update is called once per frame
@@ -45,6 +46,7 @@ public class scripthaunt : MonoBehaviour
                 transform.localScale = originalScale;
 
                 ghostMovement.ReappearFromFurniture();
+                furnitureMovement.moveFurniture = false;
             }
         }
         
@@ -55,22 +57,23 @@ public class scripthaunt : MonoBehaviour
             if (distanceToGhost <= interactionRadius && !ghostMovement.IsPossessing)
             {
                 // HIGHLIGHT: When ghost is near, become twice the original size.
-                transform.localScale = originalScale * 2;
+                // transform.localScale = originalScale * 2;
                 Debug.Log("Ghost detected");
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Debug.Log("why you press ra");
                     isPossessed = true;
                     ghostMovement.DisappearIntoFurniture();
+                    furnitureMovement.moveFurniture = true;
                     
                     // POSSESSED: When possessed, become half the original size.
-                    transform.localScale = originalScale * 0.5f;
+                    // transform.localScale = originalScale * 0.5f;
                 }
             }
             else
             {
                 // NORMAL: When ghost is far away or busy, return to original size.
-                transform.localScale = originalScale;
+                // transform.localScale = originalScale;
             }
         }
     
