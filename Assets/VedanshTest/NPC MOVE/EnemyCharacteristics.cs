@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyCharacteristics : MonoBehaviour
 {
     public int maxSanity;
     public int currentSanity;
+    public Image image;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,13 +15,14 @@ public class EnemyCharacteristics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentSanity);
+        // Debug.Log(currentSanity);
     }
 
     public void takeDamage(int damage)
     {
         currentSanity -= damage;
-        // image.fillAmount = currentSanity / (float)maxSanity;
+        
+        image.fillAmount = currentSanity / (float)maxSanity;
         if (currentSanity <= 0)
         {
             Die();

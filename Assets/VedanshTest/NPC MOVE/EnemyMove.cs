@@ -31,6 +31,7 @@ public class EnemyMove : MonoBehaviour
     public string WalkString;
     public string RunString;
     public string ScaredString;
+    public Transform target;
 
     void Start()
     {
@@ -39,6 +40,20 @@ public class EnemyMove : MonoBehaviour
 
         playAnimation(IdleString);
         nextActionTime = Time.time + idleTime;
+    }
+
+    void LateUpdate()
+    {
+        if (isScared && Time.time < scaredEndTime && !isRunning)
+        {
+            Vector3 direction = target.position - transform.position;
+            direction.y = 0f;
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            }
+        }
     }
 
     void Update()
@@ -61,6 +76,18 @@ public class EnemyMove : MonoBehaviour
         }
 
         // If time to take an action and not moving → pick a walk destination
+        // if (Time.time > nextActionTime && !agent.hasPath)
+        // {
+        //     Vector3 dest;
+        //     if (RandomPoint(transform.position, walkRadius, out dest))
+        //     {
+        //         agent.speed = walkSpeed;
+        //         playAnimation(WalkString);
+        //         agent.SetDestination(dest);
+        //     }
+
+        //     nextActionTime = Time.time + idleTime;
+        // }
         if (Time.time > nextActionTime && !agent.hasPath)
         {
             Vector3 dest;
@@ -71,7 +98,7 @@ public class EnemyMove : MonoBehaviour
                 agent.SetDestination(dest);
             }
 
-            nextActionTime = Time.time + idleTime;
+            nextActionTime = Time.time + idleTime + Random.Range(0f, 5f); // stagger queries
         }
 
         // If reached destination → go idle

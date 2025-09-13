@@ -62,18 +62,13 @@ public class scripthaunt : MonoBehaviour
                     float distance = Vector3.Distance(enemyTransform.position, transform.position);
                     if (distance <= scareDistance)
                     {
-                        Vector3 direction = transform.position - enemyTransform.position;
-                        direction.y = 0f; // ignore vertical difference
-                        if (direction != Vector3.zero)
-                        {
-                            Quaternion lookRotation = Quaternion.LookRotation(direction);
-                            enemyTransform.rotation = Quaternion.Slerp(enemyTransform.rotation, lookRotation, Time.deltaTime * 5f);
-                        }
+
 
                         // Apply damage
                         EnemyMove enemyMove = enemy.GetComponent<EnemyMove>();
                         EnemyCharacteristics enemyCharacteristics = enemy.GetComponent<EnemyCharacteristics>();
                         enemyCharacteristics.takeDamage(damage);
+                        enemyMove.target = transform;
                         enemyMove.Scared();
                     }
                 }
