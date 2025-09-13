@@ -1,24 +1,3 @@
-// using UnityEngine;
-
-// public class CameraFollow : MonoBehaviour
-// {
-//     public Transform player;
-//     public Vector3 positionOffset;
-//     public Vector3 rotationOffset;
-//     // Start is called once before the first execution of Update after the MonoBehaviour is created
-//     void Start()
-//     {
-
-//     }
-
-//     // Update is called once per frame
-//     void Update()
-//     {
-//         transform.position = player.position + positionOffset;
-//         transform.rotation = player.rotation * Quaternion.Euler(rotationOffset);
-//     }
-// }
-
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
