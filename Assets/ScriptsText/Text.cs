@@ -17,38 +17,48 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
 
-    public void StartDialogue()
-    {
-        if (lines.Length > 0)
-            StartTyping(lines[currentLine]);
-    }
+    public bool IsActive = false; // tracks if dialogue is currently active
 
-    public void UpdateDialogue()
+    void Update()
     {
+        if (!IsActive) return;
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (isTyping)
             {
-                // If still typing → instantly complete
                 CompleteLine();
             }
             else
             {
-                // Move to next line if available
-                if (currentLine < lines.Length - 1)
-                {
-                    currentLine++;
-                    StartTyping(lines[currentLine]);
-                }
-                else
-                {
-                    Debug.Log("Dialogue finished!");
-                }
+                NextLine();
             }
         }
     }
 
-    void StartTyping(string line)
+    public void StartDialogue()
+    {
+        if (lines.Length == 0) return;
+
+        IsActive = true;
+        currentLine = 0;
+        StartTyping(lines[currentLine]);
+    }
+
+    private void NextLine()
+    {
+        if (currentLine < lines.Length - 1)
+        {
+            currentLine++;
+            StartTyping(lines[currentLine]);
+        }
+        else
+        {
+            EndDialogue();
+        }
+    }
+
+    private void StartTyping(string line)
     {
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
@@ -56,12 +66,12 @@ public class DialogueManager : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
 
-    IEnumerator TypeLine(string line)
+    private IEnumerator TypeLine(string line)
     {
         isTyping = true;
         dialogueText.text = "";
 
-        foreach (char c in line.ToCharArray())
+        foreach (char c in line)
         {
             dialogueText.text += c;
             yield return new WaitForSeconds(typeSpeed);
@@ -70,12 +80,19 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
     }
 
-    void CompleteLine()
+    private void CompleteLine()
     {
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
         dialogueText.text = lines[currentLine];
         isTyping = false;
+    }
+
+    private void EndDialogue()
+    {
+        IsActive = false;
+        dialogueText.text = "";
+        Debug.Log("Dialogue finished!");
     }
 }

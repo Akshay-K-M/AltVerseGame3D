@@ -1,8 +1,6 @@
 using UnityEngine;
-using System.Collections;
 
-
-public class MyMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public GameObject Ghost;
     public float moveSpeed;
@@ -12,14 +10,13 @@ public class MyMovement : MonoBehaviour
 
     private Vector3 OriginalScale;
 
-    private AudioSource possessionSound;
+    private AudioSource possessionSound; 
 
 
     // rotation state
     float pitch = 0f; // up/down rotation
     float yaw = 0f;   // left/right rotation
 
-    Vector3 initial_pos;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -28,8 +25,7 @@ public class MyMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         OriginalScale = transform.localScale;
-        possessionSound = GetComponent<AudioSource>();
-        initial_pos = Ghost.transform.position;
+                possessionSound = GetComponent<AudioSource>();
 
     }
 
@@ -39,26 +35,7 @@ public class MyMovement : MonoBehaviour
         {
             HandleMouseLook();
             HandleMovement();
-
-            // --- Correct snapping to floating height ---
-
         }
-    }
-
-    void LateUpdate()
-    {
-        if (!IsPossessing)
-        {
-            StartCoroutine(ForceHeightAtEndOfFrame());
-        }
-    }
-
-    IEnumerator ForceHeightAtEndOfFrame()
-    {
-        yield return new WaitForEndOfFrame(); // wait until physics/CC is done
-        Vector3 pos = controller.transform.position;
-        pos.y = initial_pos.y;
-        controller.transform.position = pos;
     }
 
     void HandleMouseLook()

@@ -45,11 +45,10 @@ public class CameraMovement : MonoBehaviour
             time_elapsed_UI += Time.deltaTime;
         }
 
-        else
+        else if(!m_Dialogue.IsActive)
         {
             UI.ShowDialogueBox();
-            m_Dialogue.UpdateDialogue();
-            Debug.Log("Done");
+            m_Dialogue.StartDialogue();
         }
 
 
