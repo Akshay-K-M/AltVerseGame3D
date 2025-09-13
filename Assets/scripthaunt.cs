@@ -7,7 +7,7 @@ public class scripthaunt : MonoBehaviour
     private GameObject Ghost;
     private Movement ghostMovement;
 
-    public int interactionRadius = 1;
+    public int interactionRadius = 2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
