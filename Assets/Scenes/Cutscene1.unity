@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 191209550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455.45, y: 204.83, z: -365.41}
+  m_LocalPosition: {x: 393.64, y: 204.83, z: -365.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -732,12 +732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Text1
   dialogueText: {fileID: 1158956756}
-  typeSpeed: 0.05
-  lines:
-  - Hello
-  - My Name is
-  - Rudra
-  - Wa
+  typeSpeed: 71.83
+  lines: []
 --- !u!4 &2031200665
 Transform:
   m_ObjectHideFlags: 0
