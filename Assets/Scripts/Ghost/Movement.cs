@@ -22,21 +22,18 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        // HandleMouseLook();
+        HandleMouseLook();
         HandleMovement();
     }
 
     void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         yaw += mouseX;
-        pitch -= mouseY; // subtract to invert controls like FPS
-        pitch = Mathf.Clamp(pitch, -89f, 89f); // prevent flipping upside down
 
-        // Apply rotation
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        // Apply rotation (only yaw, no pitch)
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 
     void HandleMovement()
