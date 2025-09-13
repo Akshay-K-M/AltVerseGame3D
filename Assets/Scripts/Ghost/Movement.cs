@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
 
     private Vector3 OriginalScale;
 
+    private AudioSource possessionSound; 
+
 
     // rotation state
     float pitch = 0f; // up/down rotation
@@ -23,6 +25,8 @@ public class Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         OriginalScale = transform.localScale;
+                possessionSound = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -58,6 +62,11 @@ public class Movement : MonoBehaviour
 
     public void DisappearIntoFurniture()
     {
+        if (!IsPossessing && possessionSound != null)
+        {
+            possessionSound.Play();
+        }
+
         IsPossessing = true;
         transform.localScale = Vector3.zero;
         if (controller != null) controller.enabled = false;
