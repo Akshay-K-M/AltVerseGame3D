@@ -31,10 +31,7 @@ public class EnemyCharacteristics : MonoBehaviour
     }
     public void Die()
     {
-        // transform.GetComponent<EnemyMove>().enabled = false;
-        // transform.GetComponent<NavMeshAgent>().enabled = false;
-        // ragdoll.ActivateRagDoll();
-        // playerController.enemyKillReward();
+        Destroy(gameObject, 3f);
     }
 
 }

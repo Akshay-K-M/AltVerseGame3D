@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class scripthaunt : MonoBehaviour
@@ -13,7 +14,7 @@ public class scripthaunt : MonoBehaviour
     private Material[] originalMats;
     public List<GameObject> npcs;
     public EnemySpawn enemySpawn;
-    public float scareDistance = 20f;
+    public float scareDistance = 5f;
     float stopTime = 5f;
     float lastTime;
     public int interactionRadius = 2;
@@ -58,18 +59,21 @@ public class scripthaunt : MonoBehaviour
                 Debug.Log("Scaryyyy");
                 foreach (GameObject enemy in npcs)
                 {
-                    Transform enemyTransform = enemy.transform;
-                    float distance = Vector3.Distance(enemyTransform.position, transform.position);
-                    if (distance <= scareDistance)
+                    if (enemy != null)
                     {
+                        Transform enemyTransform = enemy.transform;
+                        float distance = Vector3.Distance(enemyTransform.position, transform.position);
+                        if (distance <= scareDistance)
+                        {
 
 
-                        // Apply damage
-                        EnemyMove enemyMove = enemy.GetComponent<EnemyMove>();
-                        EnemyCharacteristics enemyCharacteristics = enemy.GetComponent<EnemyCharacteristics>();
-                        enemyCharacteristics.takeDamage(damage);
-                        enemyMove.target = transform;
-                        enemyMove.Scared();
+                            // Apply damage
+                            EnemyMove enemyMove = enemy.GetComponent<EnemyMove>();
+                            EnemyCharacteristics enemyCharacteristics = enemy.GetComponent<EnemyCharacteristics>();
+                            enemyCharacteristics.takeDamage(damage);
+                            enemyMove.target = transform;
+                            enemyMove.Scared();
+                        }
                     }
                 }
                 lastTime = Time.time;
@@ -98,22 +102,26 @@ public class scripthaunt : MonoBehaviour
             {
                 if (meshRenderer != null)
                 {
-                    Material[] mats = meshRenderer.materials;
+                    // Material[] mats = meshRenderer.materials;
+                    // if (mats.Length < 2)
+                    // {
 
-                    // Create new array with +1 slot
-                    Material[] newMats = new Material[mats.Length + 1];
+                    //     // Create new array with +1 slot
+                    //     Material[] newMats = new Material[mats.Length + 1];
 
-                    // Copy old materials
-                    for (int i = 0; i < mats.Length; i++)
-                    {
-                        newMats[i] = mats[i];
-                    }
+                    //     // Copy old materials
+                    //     for (int i = 0; i < mats.Length; i++)
+                    //     {
+                    //         newMats[i] = mats[i];
+                    //     }
 
-                    // Add the new material at the end
-                    newMats[mats.Length] = material;
+                    //     // Add the new material at the end
+                    //     newMats[mats.Length] = material;
 
-                    // Assign back
-                    meshRenderer.materials = newMats;
+                    //     // Assign back
+                    //     meshRenderer.materials = newMats;
+                    // }
+                    meshRenderer.material = material;
                 }
                 // HIGHLIGHT: When ghost is near, become twice the original size.
                 // transform.localScale = originalScale * 2;
