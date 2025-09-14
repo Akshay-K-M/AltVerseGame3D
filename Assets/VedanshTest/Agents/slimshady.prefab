@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a202ac4fa7907c343afa513f9b974843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
+  playerTransform: {fileID: 0}
 --- !u!1 &8395138431768229947
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimshady
       objectReference: {fileID: 0}
+    - target: {fileID: 2435552923450884991, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7707845992078029634, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
       propertyPath: idleTime
       value: 20
@@ -344,10 +349,54 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2226490115522738614, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6339223786100113205}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2435552923450884991, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7080383975048077035}
   m_SourcePrefab: {fileID: 100100000, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
 --- !u!4 &1431736138700483991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2226490115522738614, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
+  m_PrefabInstance: {fileID: 952679100209845281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3239296369881913182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2435552923450884991, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
+  m_PrefabInstance: {fileID: 952679100209845281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7080383975048077035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239296369881913182}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f8467fd26f76042bbeb188ddee5024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
+  agent: {fileID: 4819440231766261381}
+  animator: {fileID: 6914185609138306808}
+  idleTime: 20
+  walkRadius: 15
+  walkSpeed: 2
+  runSpeed: 5
+  runInnerRadius: 15
+  runOuterRadius: 25
+  scaredDuration: 3
+  IdleString: Idle
+  WalkString: Walk
+  RunString: Run
+  ScaredString: Scared
+  target: {fileID: 0}
+--- !u!195 &4819440231766261381 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5754069542377958052, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
+  m_PrefabInstance: {fileID: 952679100209845281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6914185609138306808 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5966292820757850841, guid: ee2f8652ff019244a9c559430fabbee5, type: 3}
   m_PrefabInstance: {fileID: 952679100209845281}
   m_PrefabAsset: {fileID: 0}
