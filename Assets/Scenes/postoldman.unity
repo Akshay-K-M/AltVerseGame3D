@@ -398,9 +398,9 @@ MonoBehaviour:
   dialogueText: {fileID: 957323070}
   typeSpeed: 0.05
   lines:
-  - However, that's not you.
-  - You... are long dead.
-  - 
+  - "Unacceptable\u2026 "
+  - You cannot spend another MINUTE "living" around these ANIMALS anymore
+  - YOU WILL REMOVE THEM FORM YOUR HOUSE, BY ANY MEANS NECESSARY
   IsActive: 0
 --- !u!1 &1002917235
 GameObject:
@@ -1009,7 +1009,6 @@ GameObject:
   - component: {fileID: 1920314631}
   - component: {fileID: 1920314630}
   - component: {fileID: 1920314633}
-  - component: {fileID: 1920314634}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1135,25 +1134,52 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &1920314634
+--- !u!1 &2033455408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033455410}
+  - component: {fileID: 2033455409}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2033455409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920314629}
+  m_GameObject: {fileID: 2033455408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6b3acc7f0fa5444a627f46f7e0c48c, type: 3}
+  m_Script: {fileID: 11500000, guid: 15116699311d143949cc8a4f9a60a806, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  cam: {fileID: 1920314631}
-  final_angle: 299.9
-  rotation_speed: 70
-  focus_time_sleep: 5
-  focus_ghost: 1
-  UI: {fileID: 1200878484}
+  m_EditorClassIdentifier: Assembly-CSharp::SceneController
   m_Dialogue: {fileID: 957323072}
+  UI: {fileID: 1200878484}
+--- !u!4 &2033455410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033455408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.98739, y: -0.45971, z: -7.58276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1166,3 +1192,4 @@ SceneRoots:
   - {fileID: 1036203789}
   - {fileID: 1202911691}
   - {fileID: 1200878483}
+  - {fileID: 2033455410}
