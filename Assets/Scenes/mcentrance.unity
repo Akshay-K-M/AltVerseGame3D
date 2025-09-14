@@ -444,11 +444,15 @@ MonoBehaviour:
   dialogueText: {fileID: 957323070}
   typeSpeed: 0.05
   lines:
-  - 'Alright, one last box... I think that''s everything from the truck.  '
-  - 'This place is even bigger than I remember from the viewing.  '
-  - Its eerily silent, won't be for much longer now that my family is moving in.
-  - The agent said it was a steal for a house of this size
-  - 'Well, let''s get this last one inside and officially call this place home.  '
+  - 'Bunty: Alright, one last box... I think that''s everything from the truck.  '
+  - 'Bunty: This place is even bigger than I remember from the viewing.  '
+  - 'Bunty: Its eerily silent, won''t be for much longer now that my family is moving
+    in.'
+  - 'Bunty: The agent said it was a steal for a house of this size'
+  - 'Bunty: Well, let''s get this last one inside and officially call this place
+    home.  '
+  - 'Bunty: Though, I do feel quite sleepy, guess I''ll be sleeping in early...'
+  NextScene: NPCEntersHouse
   IsActive: 0
 --- !u!1 &1002917235
 GameObject:

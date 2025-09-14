@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("NPCEntersHouse");
+        SceneManager.LoadScene("mcentrance");
     }
 
     public void Quit()

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Lines")]
     public string[] lines;
+
+    [Header("Next Scene")]
+    [SerializeField] public string NextScene;
 
     private int currentLine = 0;
     private Coroutine typingCoroutine;
@@ -94,5 +98,6 @@ public class DialogueManager : MonoBehaviour
         IsActive = false;
         dialogueText.text = "";
         Debug.Log("Dialogue finished!");
+        SceneManager.LoadScene(NextScene);
     }
 }

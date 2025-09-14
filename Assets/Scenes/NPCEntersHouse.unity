@@ -398,9 +398,9 @@ MonoBehaviour:
   dialogueText: {fileID: 957323070}
   typeSpeed: 0.05
   lines:
-  - However, that's not you.
-  - You... are long dead.
-  - 
+  - However, that's not you. (You can never be bunty(HIM))
+  - You... are long dead, and just a petty ghost.
+  NextScene: oldman
   IsActive: 0
 --- !u!1 &1002917235
 GameObject:
